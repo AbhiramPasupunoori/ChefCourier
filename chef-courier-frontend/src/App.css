@@ -1,0 +1,95 @@
+.app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
+.hero {
+  width: min(760px, 100%);
+  padding: 56px;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(32, 24, 18, 0.12);
+  text-align: center;
+}
+
+.logo {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 24px;
+  border-radius: 22px;
+  background: #e85d04;
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #e85d04;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0;
+  color: #24211f;
+  font-size: clamp(44px, 8vw, 72px);
+  line-height: 1;
+}
+
+.description {
+  max-width: 600px;
+  margin: 24px auto 0;
+  color: #69615c;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 38px;
+}
+
+.status-card {
+  padding: 22px;
+  border: 1px solid #ece5df;
+  border-radius: 18px;
+  background: #fffaf6;
+}
+
+.status-card span {
+  display: block;
+  margin-bottom: 10px;
+  color: #756c66;
+}
+
+.status-card strong {
+  color: #198754;
+  font-size: 24px;
+}
+
+.error-message {
+  margin-top: 24px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #fff0f0;
+  color: #b42318;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 36px 22px;
+  }
+
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+}
