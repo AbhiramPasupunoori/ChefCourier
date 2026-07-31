@@ -120,6 +120,20 @@ public class SecurityConfig {
                         authorize
 
                                 .requestMatchers(
+                                        "/",
+                                        "/index.html",
+                                        "/assets/**",
+                                        "/favicon.svg",
+                                        "/icons.svg",
+                                        "/login",
+                                        "/register",
+                                        "/addresses",
+                                        "/cart",
+                                        "/orders",
+                                        "/owner",
+                                        "/delivery",
+                                        "/admin",
+                                        "/restaurants/**",
                                         "/api/health",
                                         "/api/auth/register",
                                         "/api/auth/login"

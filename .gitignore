@@ -14,6 +14,7 @@ chef-courier-backend/target/
 # React
 chef-courier-frontend/node_modules/
 chef-courier-frontend/dist/
+chef-courier-frontend/node/
 
 # Environment
 .env
