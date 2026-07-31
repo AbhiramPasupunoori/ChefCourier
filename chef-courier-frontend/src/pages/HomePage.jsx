@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useMemo,
   useState,
 } from "react";
 
@@ -11,53 +12,190 @@ import {
   restaurantApi,
 } from "../api/api";
 
-export default function HomePage() {
-  const [restaurants, setRestaurants] =
-    useState([]);
+const cuisineFilters = [
+  "All",
+  "Indian",
+  "Italian",
+  "Asian",
+  "Healthy",
+];
 
-  const [search, setSearch] =
-    useState("");
+export default function HomePage() {
+  const [
+    restaurants,
+    setRestaurants,
+  ] = useState([]);
+
+  const [
+    search,
+    setSearch,
+  ] = useState("");
+
+  const [
+    selectedCuisine,
+    setSelectedCuisine,
+  ] = useState("All");
+
+  const [
+    loading,
+    setLoading,
+  ] = useState(true);
+
+  const [
+    error,
+    setError,
+  ] = useState("");
 
   async function loadRestaurants() {
-    const response =
-      await restaurantApi.list(search);
+    try {
+      setLoading(true);
+      setError("");
 
-    setRestaurants(response.data);
+      const response =
+        await restaurantApi.list(
+          search
+        );
+
+      setRestaurants(
+        response.data
+      );
+    } catch (requestError) {
+      console.error(requestError);
+
+      setError(
+        "Restaurants could not be loaded."
+      );
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     loadRestaurants();
   }, []);
 
+  const filteredRestaurants =
+    useMemo(() => {
+      if (
+        selectedCuisine === "All"
+      ) {
+        return restaurants;
+      }
+
+      return restaurants.filter(
+        (restaurant) =>
+          restaurant.cuisineType
+            ?.toLowerCase()
+            .includes(
+              selectedCuisine.toLowerCase()
+            )
+      );
+    }, [
+      restaurants,
+      selectedCuisine,
+    ]);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    loadRestaurants();
+  }
+
   return (
     <main className="container">
       <section className="hero">
         <p className="eyebrow">
-          Fast food delivery
+          Fresh food. Fast delivery.
         </p>
 
         <h1>
-          Your favourite meals,
-          delivered by ChefCourier
+          Delicious meals delivered
+          from local kitchens.
         </h1>
 
-        <div className="search-row">
+        <p>
+          Discover restaurants across
+          Hyderabad, browse their menus
+          and track your delivery from
+          kitchen to doorstep.
+        </p>
+
+        <form
+          className="search-row"
+          onSubmit={handleSubmit}
+        >
           <input
             value={search}
             onChange={(event) =>
-              setSearch(event.target.value)
+              setSearch(
+                event.target.value
+              )
             }
-            placeholder="Search restaurant or cuisine"
+            placeholder="Search restaurant, cuisine or city"
           />
 
-          <button onClick={loadRestaurants}>
-            Search
+          <button type="submit">
+            Search Restaurants
           </button>
+        </form>
+      </section>
+
+      <section className="section-heading">
+        <div>
+          <h2>
+            Popular restaurants
+          </h2>
+
+          <p>
+            Browse restaurants and
+            cuisines available near you.
+          </p>
         </div>
       </section>
 
+      <div className="filter-row">
+        {cuisineFilters.map(
+          (cuisine) => (
+            <button
+              type="button"
+              key={cuisine}
+              className={
+                selectedCuisine
+                  === cuisine
+                  ? "filter-button active"
+                  : "filter-button"
+              }
+              onClick={() =>
+                setSelectedCuisine(
+                  cuisine
+                )
+              }
+            >
+              {cuisine}
+            </button>
+          )
+        )}
+      </div>
+
+      {loading && (
+        <p>Loading restaurants...</p>
+      )}
+
+      {error && (
+        <p className="error">
+          {error}
+        </p>
+      )}
+
+      {!loading &&
+        !filteredRestaurants.length && (
+          <div className="empty-state">
+            No restaurants matched
+            your search.
+          </div>
+        )}
+
       <section className="grid">
-        {restaurants.map(
+        {filteredRestaurants.map(
           (restaurant) => (
             <article
               className="card"
@@ -65,27 +203,47 @@ export default function HomePage() {
             >
               <img
                 src={
-                  restaurant.imageUrl ||
-                  "https://placehold.co/600x400"
+                  restaurant.imageUrl
+                  ||
+                  "https://placehold.co/900x600/1C1917/F97316?text=ChefCourier"
                 }
                 alt={restaurant.name}
               />
 
-              <h2>{restaurant.name}</h2>
+              <h2>
+                {restaurant.name}
+              </h2>
 
               <p>
-                {restaurant.cuisineType}
+                {restaurant.description}
               </p>
 
-              <p>
-                ⭐ {restaurant.averageRating}
-              </p>
+              <div className="restaurant-meta">
+                <span className="badge">
+                  {restaurant.cuisineType}
+                </span>
+
+                <span className="badge">
+                  {restaurant.city}
+                </span>
+
+                <span className="badge">
+                  ⭐
+                  {" "}
+                  {Number(
+                    restaurant.averageRating
+                    || 0
+                  ).toFixed(1)}
+                </span>
+              </div>
 
               <Link
                 className="button"
-                to={`/restaurants/${restaurant.id}`}
+                to={
+                  `/restaurants/${restaurant.id}`
+                }
               >
-                View Menu
+                Explore Menu
               </Link>
             </article>
           )
