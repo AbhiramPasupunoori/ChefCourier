@@ -18,4 +18,10 @@ public interface MenuCategoryRepository
             Long categoryId,
             Long restaurantId
     );
+
+    Optional<MenuCategory>
+    findByRestaurantIdAndNameIgnoreCase(
+            Long restaurantId,
+            String name
+    );
 }
