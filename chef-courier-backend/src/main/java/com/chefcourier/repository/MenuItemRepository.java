@@ -23,4 +23,9 @@ public interface MenuItemRepository
             Long menuItemId,
             Long restaurantId
     );
+
+    boolean existsByRestaurantIdAndNameIgnoreCase(
+            Long restaurantId,
+            String name
+    );
 }
