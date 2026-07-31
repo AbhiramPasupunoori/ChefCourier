@@ -1,63 +1,117 @@
-import { useEffect, useState } from "react";
 import {
-  getBackendHealth,
-  getDatabaseHealth,
-} from "./api/healthApi";
-import "./App.css";
+  BrowserRouter,
+  Route,
+  Routes,
+} from "react-router-dom";
 
-function App() {
-  const [backendStatus, setBackendStatus] = useState("Checking...");
-  const [databaseStatus, setDatabaseStatus] = useState("Checking...");
-  const [error, setError] = useState("");
+import {
+  AuthProvider,
+} from "./context/AuthContext";
 
-  useEffect(() => {
-    async function checkApplication() {
-      try {
-        const backend = await getBackendHealth();
-        const database = await getDatabaseHealth();
+import NavBar from "./components/NavBar";
+import Protected from "./components/Protected";
 
-        setBackendStatus(backend.status);
-        setDatabaseStatus(database.status);
-      } catch (requestError) {
-        console.error(requestError);
+import HomePage from "./pages/HomePage";
+import RestaurantPage from "./pages/RestaurantPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import AddressPage from "./pages/AddressPage";
+import CartPage from "./pages/CartPage";
+import OrdersPage from "./pages/OrdersPage";
+import OwnerPage from "./pages/OwnerPage";
+import DeliveryPage from "./pages/DeliveryPage";
+import AdminPage from "./pages/AdminPage";
 
-        setBackendStatus("DOWN");
-        setDatabaseStatus("UNKNOWN");
-        setError(
-          "ChefCourier could not connect to the backend. Make sure Spring Boot is running on port 8080."
-        );
-      }
-    }
-
-    checkApplication();
-  }, []);
-
+export default function App() {
   return (
-    <main className="app">
-      <section className="hero">
-        <div className="logo">CC</div>
-        <p className="eyebrow">Food ordering and delivery</p>
-        <h1>ChefCourier</h1>
-        <p className="description">
-          Discover restaurants, order your favourite food and track delivery
-          from the restaurant to your doorstep.
-        </p>
+    <BrowserRouter>
+      <AuthProvider>
+        <NavBar />
 
-        <div className="status-grid">
-          <article className="status-card">
-            <span>Spring Boot backend</span>
-            <strong>{backendStatus}</strong>
-          </article>
-          <article className="status-card">
-            <span>MySQL database</span>
-            <strong>{databaseStatus}</strong>
-          </article>
-        </div>
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage />}
+          />
 
-        {error && <p className="error-message">{error}</p>}
-      </section>
-    </main>
+          <Route
+            path="/restaurants/:restaurantId"
+            element={<RestaurantPage />}
+          />
+
+          <Route
+            path="/login"
+            element={<LoginPage />}
+          />
+
+          <Route
+            path="/register"
+            element={<RegisterPage />}
+          />
+
+          <Route
+            path="/addresses"
+            element={
+              <Protected roles={["CUSTOMER"]}>
+                <AddressPage />
+              </Protected>
+            }
+          />
+
+          <Route
+            path="/cart"
+            element={
+              <Protected roles={["CUSTOMER"]}>
+                <CartPage />
+              </Protected>
+            }
+          />
+
+          <Route
+            path="/orders"
+            element={
+              <Protected roles={["CUSTOMER"]}>
+                <OrdersPage />
+              </Protected>
+            }
+          />
+
+          <Route
+            path="/owner"
+            element={
+              <Protected
+                roles={[
+                  "RESTAURANT_OWNER",
+                ]}
+              >
+                <OwnerPage />
+              </Protected>
+            }
+          />
+
+          <Route
+            path="/delivery"
+            element={
+              <Protected
+                roles={[
+                  "DELIVERY_PARTNER",
+                ]}
+              >
+                <DeliveryPage />
+              </Protected>
+            }
+          />
+
+          <Route
+            path="/admin"
+            element={
+              <Protected roles={["ADMIN"]}>
+                <AdminPage />
+              </Protected>
+            }
+          />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;
