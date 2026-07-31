@@ -2,7 +2,6 @@ package com.chefcourier.controller;
 
 import com.chefcourier.dto.request.*;
 import com.chefcourier.dto.response.*;
-import com.chefcourier.entity.User;
 import com.chefcourier.enums.*;
 import com.chefcourier.repository.UserRepository;
 import com.chefcourier.service.*;
