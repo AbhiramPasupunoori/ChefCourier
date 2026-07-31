@@ -25,6 +25,10 @@ public interface RestaurantRepository
             Long ownerId
     );
 
+    Optional<Restaurant> findByNameIgnoreCase(
+            String name
+    );
+
     List<Restaurant>
     findByStatusOrderByCreatedAtDesc(
             RestaurantStatus status
