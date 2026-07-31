@@ -1,12 +1,6 @@
 # macOS
 .DS_Store
 
-# Java and Maven
-chef-courier-backend/target/
-*.class
-*.jar
-*.log
-
 # IntelliJ
 .idea/
 *.iml
@@ -14,11 +8,17 @@ chef-courier-backend/target/
 # VS Code
 .vscode/
 
+# Maven
+chef-courier-backend/target/
+
 # React
 chef-courier-frontend/node_modules/
 chef-courier-frontend/dist/
 
-# Environment variables
+# Environment
 .env
 .env.*
 !.env.example
+
+# Logs
+*.log
