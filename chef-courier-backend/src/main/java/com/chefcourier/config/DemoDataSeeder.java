@@ -132,7 +132,7 @@ public class DemoDataSeeder {
                             "9010000001",
                             "Road Number 12, Banjara Hills",
                             "Hyderabad",
-                            "https://placehold.co/900x600/F97316/FFFFFF?text=Spice+Route+Kitchen"
+                            "/images/restaurants/spice-route-kitchen.png"
                     );
 
             Restaurant pizzaRestaurant =
@@ -145,7 +145,7 @@ public class DemoDataSeeder {
                             "9010000002",
                             "Jubilee Hills Check Post",
                             "Hyderabad",
-                            "https://placehold.co/900x600/C2410C/FFFFFF?text=Urban+Pizza+Co"
+                            "/images/restaurants/urban-pizza-co.png"
                     );
 
             Restaurant asianRestaurant =
@@ -158,7 +158,7 @@ public class DemoDataSeeder {
                             "9010000003",
                             "Hitech City Main Road",
                             "Hyderabad",
-                            "https://placehold.co/900x600/1C1917/F97316?text=Wok+and+Roll"
+                            "/images/restaurants/wok-and-roll.png"
                     );
 
             Restaurant healthyRestaurant =
@@ -171,7 +171,7 @@ public class DemoDataSeeder {
                             "9010000004",
                             "Gachibowli Financial District",
                             "Hyderabad",
-                            "https://placehold.co/900x600/15803D/FFFFFF?text=Green+Bowl+Cafe"
+                            "/images/restaurants/green-bowl-cafe.png"
                     );
 
             seedIndianMenu(
@@ -488,7 +488,7 @@ public class DemoDataSeeder {
                 "Aromatic basmati rice cooked with spiced chicken.",
                 new BigDecimal("299.00"),
                 false,
-                "https://placehold.co/900x600/F97316/FFFFFF?text=Chicken+Biryani",
+                "/images/dishes/chicken-biryani.png",
                 30
         );
 
@@ -500,7 +500,7 @@ public class DemoDataSeeder {
                 "Fragrant rice layered with paneer and Indian spices.",
                 new BigDecimal("259.00"),
                 true,
-                "https://placehold.co/900x600/F97316/FFFFFF?text=Paneer+Biryani",
+                "/images/dishes/paneer-biryani.png",
                 25
         );
 
@@ -512,7 +512,7 @@ public class DemoDataSeeder {
                 "Tender chicken cooked in a creamy tomato gravy.",
                 new BigDecimal("329.00"),
                 false,
-                "https://placehold.co/900x600/C2410C/FFFFFF?text=Butter+Chicken",
+                "/images/dishes/butter-chicken.png",
                 25
         );
 
@@ -524,7 +524,7 @@ public class DemoDataSeeder {
                 "Soft tandoor-baked naan topped with garlic and butter.",
                 new BigDecimal("79.00"),
                 true,
-                "https://placehold.co/900x600/FED7AA/7C2D12?text=Garlic+Naan",
+                "/images/dishes/garlic-naan.png",
                 15
         );
     }
@@ -560,7 +560,7 @@ public class DemoDataSeeder {
                 "Classic pizza with mozzarella, tomato and fresh basil.",
                 new BigDecimal("299.00"),
                 true,
-                "https://placehold.co/900x600/C2410C/FFFFFF?text=Margherita+Pizza",
+                "/images/dishes/margherita-pizza.png",
                 25
         );
 
@@ -572,7 +572,7 @@ public class DemoDataSeeder {
                 "Loaded with onion, capsicum, mushroom and tomato.",
                 new BigDecimal("399.00"),
                 true,
-                "https://placehold.co/900x600/C2410C/FFFFFF?text=Farmhouse+Pizza",
+                "/images/dishes/farmhouse-pizza.png",
                 30
         );
 
@@ -584,7 +584,7 @@ public class DemoDataSeeder {
                 "Oven-baked garlic bread topped with melted cheese.",
                 new BigDecimal("179.00"),
                 true,
-                "https://placehold.co/900x600/FED7AA/7C2D12?text=Garlic+Bread",
+                "/images/dishes/cheesy-garlic-bread.png",
                 15
         );
 
@@ -596,7 +596,7 @@ public class DemoDataSeeder {
                 "Coffee-flavoured Italian dessert with mascarpone.",
                 new BigDecimal("219.00"),
                 true,
-                "https://placehold.co/900x600/1C1917/F97316?text=Tiramisu",
+                "/images/dishes/tiramisu.png",
                 10
         );
     }
@@ -632,7 +632,7 @@ public class DemoDataSeeder {
                 "Stir-fried noodles with vegetables and Asian sauces.",
                 new BigDecimal("229.00"),
                 true,
-                "https://placehold.co/900x600/1C1917/F97316?text=Hakka+Noodles",
+                "/images/dishes/hakka-noodles.png",
                 20
         );
 
@@ -644,7 +644,7 @@ public class DemoDataSeeder {
                 "Wok-tossed rice with chicken, egg and vegetables.",
                 new BigDecimal("259.00"),
                 false,
-                "https://placehold.co/900x600/1C1917/F97316?text=Chicken+Fried+Rice",
+                "/images/dishes/chicken-fried-rice.png",
                 22
         );
 
@@ -656,7 +656,7 @@ public class DemoDataSeeder {
                 "Crispy paneer tossed with peppers and chilli sauce.",
                 new BigDecimal("249.00"),
                 true,
-                "https://placehold.co/900x600/C2410C/FFFFFF?text=Chilli+Paneer",
+                "/images/dishes/chilli-paneer.png",
                 20
         );
 
@@ -668,7 +668,7 @@ public class DemoDataSeeder {
                 "Crispy rolls filled with seasoned vegetables.",
                 new BigDecimal("179.00"),
                 true,
-                "https://placehold.co/900x600/F97316/FFFFFF?text=Spring+Rolls",
+                "/images/dishes/vegetable-spring-rolls.png",
                 15
         );
     }
@@ -704,7 +704,7 @@ public class DemoDataSeeder {
                 "Grilled chicken, brown rice, vegetables and yoghurt dressing.",
                 new BigDecimal("349.00"),
                 false,
-                "https://placehold.co/900x600/15803D/FFFFFF?text=Protein+Bowl",
+                "/images/dishes/protein-bowl.png",
                 20
         );
 
@@ -716,7 +716,7 @@ public class DemoDataSeeder {
                 "Quinoa, grilled paneer, greens and fresh vegetables.",
                 new BigDecimal("319.00"),
                 true,
-                "https://placehold.co/900x600/15803D/FFFFFF?text=Paneer+Quinoa+Bowl",
+                "/images/dishes/paneer-quinoa-bowl.png",
                 18
         );
 
@@ -728,7 +728,7 @@ public class DemoDataSeeder {
                 "Whole-grain toast with avocado, tomato and herbs.",
                 new BigDecimal("229.00"),
                 true,
-                "https://placehold.co/900x600/15803D/FFFFFF?text=Avocado+Toast",
+                "/images/dishes/avocado-toast.png",
                 12
         );
 
@@ -740,7 +740,7 @@ public class DemoDataSeeder {
                 "Mixed berries blended with yoghurt and banana.",
                 new BigDecimal("189.00"),
                 true,
-                "https://placehold.co/900x600/15803D/FFFFFF?text=Berry+Smoothie",
+                "/images/dishes/berry-smoothie.png",
                 8
         );
     }

@@ -17,8 +17,13 @@ export default function NavBar() {
       <Link
         className="brand"
         to="/"
+        aria-label="Chef Courier home"
+        title="Go to home page"
       >
-        ChefCourier
+        <img
+          src="/images/branding/chef-courier-logo-transparent.png"
+          alt="Chef Courier"
+        />
       </Link>
 
       <div className="nav-links">

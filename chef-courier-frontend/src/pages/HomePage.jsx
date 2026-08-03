@@ -20,6 +20,35 @@ const cuisineFilters = [
   "Healthy",
 ];
 
+const seededRestaurantImages = {
+  "Spice Route Kitchen":
+    "/images/restaurants/spice-route-kitchen.png",
+  "Urban Pizza Co.":
+    "/images/restaurants/urban-pizza-co.png",
+  "Wok and Roll":
+    "/images/restaurants/wok-and-roll.png",
+  "Green Bowl Cafe":
+    "/images/restaurants/green-bowl-cafe.png",
+};
+
+function getRestaurantImage(restaurant) {
+  const seededImage =
+    seededRestaurantImages[restaurant.name];
+
+  if (
+    seededImage
+    && (!restaurant.imageUrl
+      || restaurant.imageUrl.includes(
+        "placehold.co"
+      ))
+  ) {
+    return seededImage;
+  }
+
+  return restaurant.imageUrl
+    || "/images/restaurants/spice-route-kitchen.png";
+}
+
 export default function HomePage() {
   const [
     restaurants,
@@ -202,11 +231,9 @@ export default function HomePage() {
               key={restaurant.id}
             >
               <img
-                src={
-                  restaurant.imageUrl
-                  ||
-                  "https://placehold.co/900x600/1C1917/F97316?text=ChefCourier"
-                }
+                src={getRestaurantImage(
+                  restaurant
+                )}
                 alt={restaurant.name}
               />
 

@@ -16,6 +16,61 @@ import {
   useAuth,
 } from "../context/AuthContext";
 
+const seededDishImages = {
+  "Chicken Biryani":
+    "/images/dishes/chicken-biryani.png",
+  "Paneer Biryani":
+    "/images/dishes/paneer-biryani.png",
+  "Butter Chicken":
+    "/images/dishes/butter-chicken.png",
+  "Garlic Naan":
+    "/images/dishes/garlic-naan.png",
+  "Margherita Pizza":
+    "/images/dishes/margherita-pizza.png",
+  "Farmhouse Pizza":
+    "/images/dishes/farmhouse-pizza.png",
+  "Cheesy Garlic Bread":
+    "/images/dishes/cheesy-garlic-bread.png",
+  Tiramisu:
+    "/images/dishes/tiramisu.png",
+  "Vegetable Hakka Noodles":
+    "/images/dishes/hakka-noodles.png",
+  "Chicken Fried Rice":
+    "/images/dishes/chicken-fried-rice.png",
+  "Chilli Paneer":
+    "/images/dishes/chilli-paneer.png",
+  "Vegetable Spring Rolls":
+    "/images/dishes/vegetable-spring-rolls.png",
+  "Grilled Chicken Protein Bowl":
+    "/images/dishes/protein-bowl.png",
+  "Paneer Quinoa Bowl":
+    "/images/dishes/paneer-quinoa-bowl.png",
+  "Avocado Toast":
+    "/images/dishes/avocado-toast.png",
+  "Berry Smoothie":
+    "/images/dishes/berry-smoothie.png",
+};
+
+function getDishImage(item) {
+  const seededImage =
+    seededDishImages[item.name];
+
+  if (
+    seededImage
+    && (!item.imageUrl
+      || item.imageUrl.includes(
+        "placehold.co"
+      ))
+  ) {
+    return seededImage;
+  }
+
+  return item.imageUrl
+    || `https://placehold.co/900x600/F97316/FFFFFF?text=${encodeURIComponent(
+      item.name
+    )}`;
+}
+
 export default function RestaurantPage() {
   const { restaurantId } =
     useParams();
@@ -194,13 +249,7 @@ export default function RestaurantPage() {
             key={item.id}
           >
             <img
-              src={
-                item.imageUrl
-                ||
-                `https://placehold.co/900x600/F97316/FFFFFF?text=${encodeURIComponent(
-                  item.name
-                )}`
-              }
+              src={getDishImage(item)}
               alt={item.name}
             />
 
